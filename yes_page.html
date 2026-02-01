@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YAYYY🫀</title>
+  <title>YAYYYY 🫀</title>
   <style>
     body {
       height: 100vh;
       margin: 0;
+      overflow: hidden;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -27,10 +29,12 @@
       font-size: 42px;
       color: #ff4f87;
       margin-bottom: 30px;
+      z-index: 2;
     }
 
     img {
       width: 320px;
+      z-index: 2;
       animation: float 3s ease-in-out infinite;
     }
 
@@ -38,6 +42,24 @@
       0%   { transform: translateY(0); }
       50%  { transform: translateY(-12px); }
       100% { transform: translateY(0); }
+    }
+
+    /* ❤️ HEARTS */
+    .heart {
+      position: absolute;
+      top: -10px;
+      font-size: 24px;
+      animation: fall linear forwards;
+      color: #ff5c8a;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -49,6 +71,26 @@
     src="https://media.giphy.com/media/l0MYyDa8S9ghzNebm/giphy.gif"
     alt="Excited Teddy Bear"
   >
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 
 </body>
 </html>
